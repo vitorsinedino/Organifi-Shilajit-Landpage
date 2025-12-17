@@ -102,7 +102,7 @@ export default function StarRating({
 
   return (
     <div
-      className="star-rating"
+      className={className ? `star-rating ${className}` : "star-rating"}
       role="slider"
       aria-label={ariaLabel}
       aria-valuemin={0}

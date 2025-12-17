@@ -110,7 +110,7 @@ function Product() {
                 >
                   <span className="radio-control"></span>
                   <label htmlFor="">
-                    $59.95 ONE-TIME PURCHASE
+                    {productData ? productData.variants.find((v: any) => v.id === variant_number)?.price : 59.95} ONE-TIME PURCHASE
                   </label>
                 </div>
               </div>

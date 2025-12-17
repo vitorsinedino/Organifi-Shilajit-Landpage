@@ -5,10 +5,10 @@ import { BsArrowLeft, BsArrowRight } from "react-icons/bs";
 import { useRef, useState } from 'react';
 
 function Reviews() {
-  const prevRef = useRef(null);
-  const nextRef = useRef(null);
-  const paginationRef = useRef(null);
-  const [_, setInit] = useState();
+  const prevRef = useRef<HTMLButtonElement | null>(null);
+  const nextRef = useRef<HTMLButtonElement | null>(null);
+  const paginationRef = useRef<HTMLDivElement | null>(null);
+  const [, setInit] = useState<boolean>(false);
 
   const reviews = [
     {
