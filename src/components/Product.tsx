@@ -20,15 +20,17 @@ function Product() {
   const options = [
     {
       value: "autoship",
-      label: "Autoship & Save 34% + Free Shipping",
+      label: "Autoship & Save 22% + Free Shipping",
       url: `https://www.organifishop.com/tools/recurring/checkout_link?magic=eyJpdGVtcyI6IFt7ImlkIjogNDQ1ODEyODQ4Mzk2MTAsICJxdWFudGl0eSI6IDEsICJzZWxsaW5nX3BsYW4iOiAzNDc3NTY5NzIyLCAic2VsbGluZ19wbGFuX2dyb3VwX2lkIjogMTA4ODMyMzc3MH1dfQ==&store_id=23507`,
       discounted_price: productData ? (productData.variants.find((v: any) => v.id === variant_number)?.price * 0.9).toFixed(2) : 59.95,
+      percent: 22,
     },
     {
       value: "onetime",
       label: "$59.95 One-Time Purchase",
       url: `${shopUrl}/cart/clear?return_to=/cart/${variant_number}:1`,
       discounted_price: productData ? productData.variants.find((v: any) => v.id === variant_number)?.price : 59.95,
+      percent: 13,
     },
   ];
 
@@ -66,13 +68,9 @@ function Product() {
                 <div className="discounted-price">
                   ${options.find(option => option.value === selected)?.discounted_price}
                 </div>
-                {
-                  selected === 'autoship' && (
-                    <div className="savings">
-                      Save 34% Today
-                    </div>
-                  )
-                }
+                <div className="savings">
+                  Save {options.find(option => option.value === selected)?.percent}% Today
+                </div>
               </div>
               <div className="delivery">
                 <p className='text-[18px] font-semibold mb-4'>Delivery Frequency</p>
@@ -83,7 +81,7 @@ function Product() {
                   <span className="radio-control"></span>
                   <div className="radio-info">
                     <label htmlFor="">
-                      autoship & save 34% + free shipping
+                      autoship & save 22% + free shipping
                     </label>
                     <ul>
                       <li>
@@ -98,9 +96,9 @@ function Product() {
                       <li>
                         ✓ Consistency is key! Convenient auto-delivery
                       </li>
-                      <li>
+                      {/* <li>
                         ✓ $52.96 first month then $62.96 monthly
-                      </li>
+                      </li> */}
                     </ul>
                   </div>
                 </div>
