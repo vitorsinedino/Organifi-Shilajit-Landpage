@@ -83,7 +83,7 @@ function Questions() {
             <div className="section-title section-title-rainbow mb-8">
               Frequently asked questions
             </div>
-            <img src={Image} alt="Frequently asked questions" />
+            <img src={Image} alt="Frequently asked questions" loading="lazy" decoding="async"/>
           </div>
           <div>
             {faq.map((section, sectionIndex) => (

@@ -21,7 +21,7 @@ function Himalaya() {
           </p>
         </div>
       </div>
-      <img className="md:hidden" src={Image} alt="Himalaya Mountains" />
+      <img className="md:hidden" src={Image} alt="Himalaya Mountains" loading="lazy" decoding="async" />
     </div>
   )
 }

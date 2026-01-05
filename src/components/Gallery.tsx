@@ -20,7 +20,7 @@ function Gallery({ images }: { images: any[] }) {
 
   const slides = images.map((image, index) => (
     <SwiperSlide key={index}>
-      <img src={image.src} alt={`Gallery image ${index + 1}`} />
+      <img src={image.src} alt={`Gallery image ${index + 1}`}  loading="lazy" decoding="async"/>
     </SwiperSlide>
   ))
 

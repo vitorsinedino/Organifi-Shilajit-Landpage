@@ -8,7 +8,7 @@ function Navbar() {
       <div className="container">
         <div className="nav-content">
           <div className="navbar-brand">
-            <img src={Logo} className="logo" alt="Organifi logo" />
+            <img src={Logo} className="logo" alt="Organifi logo"  loading="lazy" decoding="async"/>
           </div>
           <div className="bag">
             <Bag />

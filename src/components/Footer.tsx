@@ -32,7 +32,7 @@ function Footer() {
             </div>
             <div className="grid-col flex flex-col items-end justify-between">
               <div>
-                <img src={Logo} alt="Logo" />
+                <img src={Logo} alt="Logo" loading="lazy" decoding="async"/>
                 <div className="socials">
                   <a href="">
                     <FaFacebookSquare size={25} color="#142B46" />

@@ -12,7 +12,7 @@ function Hero() {
           The Ultimate ATP-Boosting, Anti-Aging Chew
         </div>
       </div>
-      <img className="md:hidden" src={Image} alt="" />
+      <img className="md:hidden" src={Image} alt="" loading="lazy" decoding="async" />
       <div className="container mt-[80px] relative z-99">
         <div className="main-info flex items-center justify-between">
           <div className="hero-content">

@@ -77,7 +77,7 @@ function Reviews() {
                   {review.text}
                 </p>
                 <div className="review-author">
-                  <img src="https://placehold.co/64x48" alt="" />
+                  <img src="https://placehold.co/64x48" alt="" loading="lazy" decoding="async"/>
                   <div className="review-author-info">
                     <div className="review-author-name">
                       {review.user}

@@ -22,7 +22,7 @@ function Ensurance() {
       <div className="container">
         <div className="grid grid-cols-2">
           <div className="grid-col">
-            <img src={Image} alt="Ensurance" />
+            <img src={Image} alt="Ensurance" loading="lazy" decoding="async"/>
           </div>
           <div className="grid-col flex flex-col justify-center">
             <div className="section-header">
@@ -38,7 +38,7 @@ function Ensurance() {
 
               {list.map((item, index) => (
                 <li key={index} className="section-list-item">
-                  <img src={Artboard} alt="" />
+                  <img src={Artboard} alt="" loading="lazy" decoding="async"/>
                   <div className="section-text">
                     <strong>{item.title}</strong>: {item.text}
                   </div>

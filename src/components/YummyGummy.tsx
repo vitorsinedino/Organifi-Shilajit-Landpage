@@ -21,7 +21,7 @@ function YummyGummy() {
           </div>
         </div>
       </div>
-      <img src={Image} className="md:hidden" alt="Yummy Gummy" />
+      <img src={Image} className="md:hidden" alt="Yummy Gummy" loading="lazy" decoding="async"/>
     </div>
   )
 }

@@ -14,7 +14,7 @@ function IconList() {
         {icons.map((icon, index) => (
           // A unique 'key' prop is mandatory for performance and to avoid warnings
           <li key={index} className={`icon-item icon-item-${index + 1}`}>
-            <img src={icon} alt={`${icon.replace('_', ' ')} icon`} />
+            <img src={icon} alt={`${icon.replace('_', ' ')} icon`} loading="lazy" decoding="async" />
           </li>
         ))}
       </ul>
