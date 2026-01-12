@@ -11,6 +11,54 @@ type ShopifyProduct = {
   }>;
 };
 
+type UTMParams = {
+  utm_source?: string;
+  utm_medium?: string;
+  utm_campaign?: string;
+  utm_content?: string;
+  utm_term?: string;
+};
+
+function getUTMsFromUrl(): UTMParams {
+  const params = new URLSearchParams(window.location.search);
+
+  const utms: UTMParams = {};
+  ["utm_source", "utm_medium", "utm_campaign", "utm_content", "utm_term"].forEach(
+    (key) => {
+      const value = params.get(key);
+      if (value) utms[key as keyof UTMParams] = value;
+    }
+  );
+
+  return utms;
+}
+
+function persistUTMs(utms: UTMParams) {
+  if (!Object.keys(utms).length) return;
+  sessionStorage.setItem("organifi_utms", JSON.stringify(utms));
+}
+
+function getPersistedUTMs(): UTMParams {
+  try {
+    return JSON.parse(sessionStorage.getItem("organifi_utms") || "{}");
+  } catch {
+    return {};
+  }
+}
+
+function appendUTMs(url: string): string {
+  const utms = getPersistedUTMs();
+  if (!Object.keys(utms).length) return url;
+
+  const u = new URL(url, window.location.origin);
+
+  Object.entries(utms).forEach(([key, value]) => {
+    if (value) u.searchParams.set(key, value);
+  });
+
+  return u.toString();
+}
+
 function Product() {
   const [selected, setSelected] = useState<"autoship" | "onetime">("autoship");
   const [productData, setProductData] = useState<ShopifyProduct | null>(null);
@@ -20,6 +68,10 @@ function Product() {
 
   useEffect(() => {
     const controller = new AbortController();
+    const utmsFromUrl = getUTMsFromUrl();
+    if (Object.keys(utmsFromUrl).length) {
+      persistUTMs(utmsFromUrl);
+    }
 
     (async () => {
       try {
@@ -63,14 +115,18 @@ function Product() {
       {
         value: "autoship" as const,
         label: "Autoship & Save 22% + Free Shipping",
-        url: `https://www.organifishop.com/tools/recurring/checkout_link?magic=eyJpdGVtcyI6IFt7ImlkIjogNDQ1ODEyODQ4Mzk2MTAsICJxdWFudGl0eSI6IDEsICJzZWxsbGluZ19wbGFuX3BsYW4iOiAzNDc3NTY5NzIyLCAic2VsbGluZ19wbGFuX2dyb3VwX2lkIjogMTA4ODMyMzc3MH1dfQ==&store_id=23507`,
+        url: appendUTMs(
+          "https://www.organifishop.com/tools/recurring/checkout_link?magic=eyJpdGVtcyI6IFt7ImlkIjogNDQ1ODEyODQ4Mzk2MTAsICJxdWFudGl0eSI6IDEsICJzZWxsbGluZ19wbGFuX3BsYW4iOiAzNDc3NTY5NzIyLCAic2VsbGluZ19wbGFuX2dyb3VwX2lkIjogMTA4ODMyMzc3MH1dfQ==&store_id=23507"
+        ),
         discounted_price: Number((price * 0.9).toFixed(2)),
         percent: 22,
       },
       {
         value: "onetime" as const,
         label: "$59.95 One-Time Purchase",
-        url: `${shopUrl}/cart/clear?return_to=/cart/${variant_number}:1`,
+        url: appendUTMs(
+          `${shopUrl}/cart/clear?return_to=/cart/${variant_number}:1`
+        ),
         discounted_price: price,
         percent: 13,
       },
