@@ -29,6 +29,10 @@ function Product() {
       addParams.append('items[][selling_plan]', String(selling_plan));
     }
 
+    addParams.append("items[][properties][utm_source]", "shilajit_landing");
+    addParams.append("items[][properties][utm_medium]", "custom_page");
+    addParams.append("items[][properties][utm_campaign]", "shilajit");
+
     addParams.append('return_to', '/checkout');
 
     const clearParams = new URLSearchParams();
