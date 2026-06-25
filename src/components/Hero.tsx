@@ -25,7 +25,7 @@ function Hero() {
           </div>
           <div >
             <p className="new-costumers">
-              Save 25% on our BRAND NEW Shilajit Gummies for father's day sale!
+              Save 25% on our BRAND NEW Shilajit Gummies for New Costumers!
             </p>
           </div>
         </div>
